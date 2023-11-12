@@ -1,5 +1,7 @@
 package View;
 
+import Model.VisitDay;
+
 public class OutputView {
 
     public static void printGreeting() {
@@ -8,5 +10,11 @@ public class OutputView {
 
     public static void printErrorMessage(String errorMessage) {
         System.out.println(errorMessage);
+    }
+
+    public static void printEventNotice(VisitDay visitDay) {
+        System.out.print("12월 ");
+        System.out.print(visitDay);
+        System.out.println("에 우테코 식당에서 받을 이벤트 혜택 미리 보기!");
     }
 }

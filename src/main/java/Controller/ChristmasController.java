@@ -16,13 +16,15 @@ public class ChristmasController {
 
     public void startPromotion() {
         OutputView.printGreeting();
-        readCustomerInfo();
+        VisitDay visitDay = readCustomerInfo();
+        OutputView.printEventNotice(visitDay);
     }
 
-    public void readCustomerInfo() {
+    public VisitDay readCustomerInfo() {
         VisitDay customerVisitDay = readVisitDayInput();
         List<Menu> customerMenuItems = readMenuItemsInput();
         customer = new Customer(customerVisitDay, customerMenuItems);
+        return customerVisitDay;
     }
 
     public VisitDay readVisitDayInput() {

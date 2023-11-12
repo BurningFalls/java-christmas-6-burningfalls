@@ -50,7 +50,7 @@
 - [] 메뉴 이름을 중복해서 입력했는지 확인 Menu.*validateDuplicate*
 - [X] 메뉴 개수가 숫자인지 확인 Menu.*validateIsNumber*
 - [X] 메뉴 개수가 1 이상인지 확인 Menu.*validateBiggerThanOne*
-- [] 식당 이벤트 공지 출력 OutputView.*printEventNotice*
+- [X] 식당 이벤트 공지 출력 OutputView.*printEventNotice*
 - [] 주문한 메뉴와 개수 출력 OutputView.*printMenu*
 - [] 총주문 금액 계산 christmasController.*calculateTotalMoney*
 - [] 모든 할인 금액 계산 christmasController.*calculateTotalDiscount*
