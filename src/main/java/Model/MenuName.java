@@ -1,12 +1,28 @@
 package Model;
 
+import Enum.MenuBoard;
+
 import java.util.Objects;
 
 public class MenuName {
     private String menuName;
 
     public MenuName(String menuName) {
+        validateMenuName(menuName);
         this.menuName = menuName;
+    }
+
+    public void validateMenuName(String menuName) {
+        boolean validFlag = false;
+        for (MenuBoard menu : MenuBoard.values()) {
+            if (menu.getMenuName().equals(menuName)) {
+                validFlag = true;
+                break;
+            }
+        }
+        if (!validFlag) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        }
     }
 
     @Override
