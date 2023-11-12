@@ -9,7 +9,7 @@ public class VisitDay {
 
     public int validate(String visitDayString) {
         int visitDayInt = validateIsNumber(visitDayString);
-        // validate1To31(visitDayInt);
+        validate1To31(visitDayInt);
         return visitDayInt;
     }
 
@@ -21,5 +21,11 @@ public class VisitDay {
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
         }
         return visitDayInt;
+    }
+
+    public void validate1To31(int visitDayInt) {
+        if (visitDayInt < 1 || visitDayInt > 31) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+        }
     }
 }

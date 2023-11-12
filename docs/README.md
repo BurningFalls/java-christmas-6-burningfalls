@@ -43,7 +43,7 @@
 - [X] 식당 방문인사 문구 출력 OutputView.*printGreeting*
 - [X] 방문 날짜 입력받기 InputView.*inputVisitDay*
 - [X] 방문 날짜가 숫자인지 확인 VisitDay.*validateIsNumber*
-- [] 방문 날짜가 1 이상 31 이하인지 확인 VisitDay.*validate1To31*
+- [X] 방문 날짜가 1 이상 31 이하인지 확인 VisitDay.*validate1To31*
 - [] 주문할 메뉴와 개수 입력받기 InputView.*inputMenu*
 - [] 메뉴 형식대로 입력했는지 확인 Menu.*validateMenuRule*
 - [] 메뉴 이름이 메뉴판에 있는 메뉴인지 확인 Menu.*validateMenuName*
