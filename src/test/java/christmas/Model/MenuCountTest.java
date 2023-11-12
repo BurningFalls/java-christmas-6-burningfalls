@@ -16,7 +16,8 @@ public class MenuCountTest {
     @ParameterizedTest
     void menuCountIsNumber(String input) {
         assertThatThrownBy(() -> new MenuCount(input))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
 
     @DisplayName("메뉴 개수가 1개 이상이 아니면 예외 처리")
@@ -24,6 +25,7 @@ public class MenuCountTest {
     @ParameterizedTest
     void menuCountBiggerThanOne(String input) {
         assertThatThrownBy(() -> new MenuCount(input))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
 }
