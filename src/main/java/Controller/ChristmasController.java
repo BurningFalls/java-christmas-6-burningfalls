@@ -20,7 +20,18 @@ public class ChristmasController {
     }
 
     public VisitDay readVisitDayInput() {
-        String visitDay = InputView.inputVisitDay();
-        return new VisitDay(visitDay);
+        VisitDay visitDay = null;
+        boolean validFlag = false;
+
+        while (!validFlag) {
+            try {
+                String visitDayFromInput = InputView.inputVisitDay();
+                visitDay = new VisitDay(visitDayFromInput);
+                validFlag = true;
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
+        return visitDay;
     }
 }
