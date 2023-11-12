@@ -13,8 +13,8 @@ public class Menu {
         this.menuCount = new MenuCount(menuNameAndCount.get(1));
     }
 
-    public List<String> menuStringToNameAndCount(String MenuString) {
-        return List.of(MenuString.split("-"));
+    public List<String> menuStringToNameAndCount(String menuString) {
+        return List.of(menuString.split("-"));
     }
 
     @Override
