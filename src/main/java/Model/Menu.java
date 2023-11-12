@@ -30,11 +30,11 @@ public class Menu {
             return false;
         }
         Menu other = (Menu) obj;
-        return menuName.equals(other.menuName) && menuCount.equals(other.menuCount);
+        return menuName.equals(other.menuName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(menuName, menuCount);
+        return Objects.hash(menuName);
     }
 }

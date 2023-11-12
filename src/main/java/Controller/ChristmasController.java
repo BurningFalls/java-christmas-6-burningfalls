@@ -63,8 +63,15 @@ public class ChristmasController {
 
         for (String menuItemString : menuItemsString) {
             Menu menuItem = new Menu(menuItemString);
+            validateIsSameMenuExists(menuItems, menuItem);
             menuItems.add(menuItem);
         }
         return menuItems;
+    }
+
+    public void validateIsSameMenuExists(List<Menu> menuItems, Menu menuItem) {
+        if (menuItems.contains(menuItem)) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        }
     }
 }
