@@ -8,6 +8,7 @@ public class MenuName {
     private String menuName;
 
     public MenuName(String menuName) {
+        menuName = menuName.strip();
         validateMenuName(menuName);
         this.menuName = menuName;
     }
@@ -15,7 +16,8 @@ public class MenuName {
     public void validateMenuName(String menuName) {
         boolean validFlag = false;
         for (MenuBoard menu : MenuBoard.values()) {
-            if (menu.getMenuName().equals(menuName)) {
+            String menuBoardMenuName = menu.getMenuName();
+            if (menuBoardMenuName.equals(menuName)) {
                 validFlag = true;
                 break;
             }

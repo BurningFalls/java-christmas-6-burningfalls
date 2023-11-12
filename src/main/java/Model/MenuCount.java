@@ -6,6 +6,7 @@ public class MenuCount {
     private int menuCount;
 
     public MenuCount(String menuCountString) {
+        menuCountString = menuCountString.strip();
         int menuCount = validateIsNumber(menuCountString);
         validateBiggerThanOne(menuCount);
         this.menuCount = menuCount;

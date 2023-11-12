@@ -4,6 +4,7 @@ public class VisitDay {
     private int visitDay;
 
     public VisitDay(String visitDayString) {
+        visitDayString = visitDayString.strip();
         this.visitDay = validate(visitDayString);
     }
 
