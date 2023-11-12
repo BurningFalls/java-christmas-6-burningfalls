@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.Objects;
+
 public class MenuCount {
     private int menuCount;
 
@@ -15,5 +17,22 @@ public class MenuCount {
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
         return menuCountInt;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        MenuCount other = (MenuCount) obj;
+        return menuCount == other.menuCount;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(menuCount);
     }
 }

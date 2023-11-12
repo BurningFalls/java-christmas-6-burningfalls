@@ -1,7 +1,7 @@
 package Model;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Menu {
     private MenuName menuName;
@@ -15,5 +15,22 @@ public class Menu {
 
     public List<String> menuStringToNameAndCount(String MenuString) {
         return List.of(MenuString.split("-"));
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Menu other = (Menu) obj;
+        return menuName.equals(other.menuName) && menuCount.equals(other.menuCount);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(menuName, menuCount);
     }
 }
