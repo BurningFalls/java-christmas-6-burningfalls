@@ -10,4 +10,12 @@ public class Customer {
         this.visitDay = visitDay;
         this.menuItems = menuItems;
     }
+
+    public VisitDay getVisitDay() {
+        return visitDay;
+    }
+
+    public List<Menu> getMenuItems() {
+        return menuItems;
+    }
 }

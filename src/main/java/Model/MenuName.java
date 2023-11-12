@@ -26,6 +26,11 @@ public class MenuName {
     }
 
     @Override
+    public String toString() {
+        return menuName;
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;

@@ -22,6 +22,11 @@ public class Menu {
     }
 
     @Override
+    public String toString() {
+        return menuName + " " + menuCount + "개";
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;

@@ -28,6 +28,11 @@ public class MenuCount {
     }
 
     @Override
+    public String toString() {
+        return String.valueOf(menuCount);
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;

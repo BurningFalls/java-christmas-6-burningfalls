@@ -14,15 +14,15 @@ public class ChristmasController {
 
     public void startPromotion() {
         OutputView.printGreeting();
-        VisitDay visitDay = readCustomerInfo();
-        OutputView.printEventNotice(visitDay);
+        readCustomerInfo();
+        printDayEventNotice();
+        printOrderedMenuItems();
     }
 
-    public VisitDay readCustomerInfo() {
+    public void readCustomerInfo() {
         VisitDay customerVisitDay = readVisitDayInput();
         List<Menu> customerMenuItems = readMenuItemsInput();
         customer = new Customer(customerVisitDay, customerMenuItems);
-        return customerVisitDay;
     }
 
     public VisitDay readVisitDayInput() {
@@ -73,5 +73,14 @@ public class ChristmasController {
         if (menuItems.contains(menuItem)) {
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
+    }
+
+    public void printDayEventNotice() {
+        OutputView.printEventNotice(customer.getVisitDay());
+    }
+
+    public void printOrderedMenuItems() {
+        System.out.println("\n<주문 메뉴>");
+        OutputView.printMenuItems(customer.getMenuItems());
     }
 }
