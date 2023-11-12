@@ -1,9 +1,13 @@
 package Model;
 
-public class Customer {
-    private VisitDay myVisitDay;
+import java.util.List;
 
-    public Customer(VisitDay visitDay) {
-        myVisitDay = visitDay;
+public class Customer {
+    private VisitDay visitDay;
+    private List<Menu> menuItems;
+
+    public Customer(VisitDay visitDay, List<Menu> menuItems) {
+        this.visitDay = visitDay;
+        this.menuItems = menuItems;
     }
 }

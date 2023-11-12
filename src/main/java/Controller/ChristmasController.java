@@ -1,9 +1,15 @@
 package Controller;
 
 import Model.Customer;
+import Model.Menu;
 import Model.VisitDay;
 import View.InputView;
 import View.OutputView;
+
+import java.awt.image.AreaAveragingScaleFilter;
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ChristmasController {
     Customer customer;
@@ -15,8 +21,8 @@ public class ChristmasController {
 
     public void readCustomerInfo() {
         VisitDay customerVisitDay = readVisitDayInput();
-        customer = new Customer(customerVisitDay);
-        // readMenuInput();
+        List<Menu> customerMenuItems = readMenuItemsInput();
+        customer = new Customer(customerVisitDay, customerMenuItems);
     }
 
     public VisitDay readVisitDayInput() {
@@ -33,5 +39,32 @@ public class ChristmasController {
             }
         }
         return visitDay;
+    }
+
+    public List<Menu> readMenuItemsInput() {
+        List<Menu> menuItems = new ArrayList<>();
+        boolean validFlag = false;
+
+        while (!validFlag) {
+            try {
+                String menuItemsFromInput = InputView.inputMenu();
+                menuItems = fetchMenuItems(menuItemsFromInput);
+                validFlag = true;
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
+        return menuItems;
+    }
+
+    public List<Menu> fetchMenuItems(String menuItemsFromInput) {
+        List<String> menuItemsString = List.of(menuItemsFromInput.split(","));
+        List<Menu> menuItems = new ArrayList<>();
+
+        for (String menuItemString : menuItemsString) {
+            Menu menuItem = new Menu(menuItemString);
+            menuItems.add(menuItem);
+        }
+        return menuItems;
     }
 }
