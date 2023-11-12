@@ -48,7 +48,7 @@
 - [] 메뉴 형식대로 입력했는지 확인 Menu.*validateMenuRule*
 - [] 메뉴 이름이 메뉴판에 있는 메뉴인지 확인 Menu.*validateMenuName*
 - [] 메뉴 이름을 중복해서 입력했는지 확인 Menu.*validateDuplicate*
-- [] 메뉴 개수가 숫자인지 확인 Menu.*validateIsNumber*
+- [X] 메뉴 개수가 숫자인지 확인 Menu.*validateIsNumber*
 - [] 메뉴 개수가 1 이상인지 확인 Menu.*validateBiggerThanOne*
 - [] 식당 이벤트 공지 출력 OutputView.*printEventNotice*
 - [] 주문한 메뉴와 개수 출력 OutputView.*printMenu*
