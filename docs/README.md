@@ -45,7 +45,7 @@
 - [X] 방문 날짜가 숫자인지 확인 VisitDay.*validateIsNumber*
 - [X] 방문 날짜가 1 이상 31 이하인지 확인 VisitDay.*validate1To31*
 - [X] 주문할 메뉴와 개수 입력받기 InputView.*inputMenu*
-- [] 메뉴 이름이 메뉴판에 있는 메뉴인지 확인 Menu.*validateMenuName*
+- [X] 메뉴 이름이 메뉴판에 있는 메뉴인지 확인 Menu.*validateMenuName*
 - [] 메뉴 이름을 중복해서 입력했는지 확인 Menu.*validateDuplicate*
 - [X] 메뉴 개수가 숫자인지 확인 Menu.*validateIsNumber*
 - [X] 메뉴 개수가 1 이상인지 확인 Menu.*validateBiggerThanOne*
