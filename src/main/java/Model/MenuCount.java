@@ -6,7 +6,9 @@ public class MenuCount {
     private int menuCount;
 
     public MenuCount(String menuCountString) {
-        this.menuCount = validateIsNumber(menuCountString);
+        int menuCount = validateIsNumber(menuCountString);
+        validateBiggerThanOne(menuCount);
+        this.menuCount = menuCount;
     }
 
     public int validateIsNumber(String menuCountString) {
@@ -17,6 +19,12 @@ public class MenuCount {
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
         return menuCountInt;
+    }
+
+    public void validateBiggerThanOne(int menuCount) {
+        if (menuCount < 1) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        }
     }
 
     @Override

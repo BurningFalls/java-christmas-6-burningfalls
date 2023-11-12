@@ -19,4 +19,11 @@ public class MenuCountTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("메뉴 개수가 1개 이상이 아니면 예외 처리")
+    @ValueSource(strings = {"0", "-5", "-123", "-1"})
+    @ParameterizedTest
+    void menuCountBiggerThanOne(String input) {
+        assertThatThrownBy(() -> new MenuCount(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
