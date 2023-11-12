@@ -1,7 +1,7 @@
 package Model;
 
 public class VisitDay {
-    int visitDay;
+    private int visitDay;
 
     public VisitDay(String visitDayString) {
         this.visitDay = validate(visitDayString);
