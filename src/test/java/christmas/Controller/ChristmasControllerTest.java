@@ -14,24 +14,26 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class ChristmasControllerTest {
-    ChristmasController christmasController;
+    ChristmasController controller;
+    List<Menu> sampleMenuItems;
 
     @BeforeEach
     void setUp() {
-        christmasController = new ChristmasController();
+        controller = new ChristmasController();
+        sampleMenuItems = List.of(
+                new Menu("티본스테이크-1"),
+                new Menu("바비큐립-1"),
+                new Menu("초코케이크-2"),
+                new Menu("제로콜라-1")
+        );
     }
 
     @DisplayName("메뉴리스트 콤마 기준으로 분리")
     @Test
     void splitStringToMenuItems() {
         String menuItemsFromInput = "티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1";
-        List<Menu> actualMenuItems = christmasController.fetchMenuItems(menuItemsFromInput);
-        List<Menu> expectedMenuItems = List.of(
-                new Menu("티본스테이크-1"),
-                new Menu("바비큐립-1"),
-                new Menu("초코케이크-2"),
-                new Menu("제로콜라-1")
-        );
+        List<Menu> actualMenuItems = controller.fetchMenuItems(menuItemsFromInput);
+        List<Menu> expectedMenuItems = sampleMenuItems;
 
         assertThat(actualMenuItems).isEqualTo(expectedMenuItems);
     }
@@ -39,13 +41,7 @@ public class ChristmasControllerTest {
     @DisplayName("메뉴 이름이 중복되면 예외 처리")
     @Test
     void menuNameDuplicate() {
-        assertThatThrownBy(() -> christmasController.validateIsSameMenuExists(
-                List.of(
-                        new Menu("티본스테이크-1"),
-                        new Menu("바비큐립-1"),
-                        new Menu("초코케이크-2"),
-                        new Menu("제로콜라-1")
-                ), new Menu("초코케이크-1")))
+        assertThatThrownBy(() -> controller.validateIsSameMenuExists(sampleMenuItems, new Menu("초코케이크-1")))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
