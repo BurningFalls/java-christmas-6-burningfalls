@@ -11,6 +11,14 @@ public class Customer {
         this.menuItems = menuItems;
     }
 
+    public int calculateMenuItemsMoney() {
+        int totalMoney = 0;
+        for (Menu menu : menuItems) {
+            totalMoney += menu.getCost() * menu.getCount();
+        }
+        return totalMoney;
+    }
+
     public VisitDay getVisitDay() {
         return visitDay;
     }

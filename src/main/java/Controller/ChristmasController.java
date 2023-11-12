@@ -17,6 +17,8 @@ public class ChristmasController {
         readCustomerInfo();
         printDayEventNotice();
         printOrderedMenuItems();
+
+        int money = calculateDiscountedMoney();
     }
 
     public void readCustomerInfo() {
@@ -82,5 +84,19 @@ public class ChristmasController {
     public void printOrderedMenuItems() {
         System.out.println("\n<주문 메뉴>");
         OutputView.printMenuItems(customer.getMenuItems());
+    }
+
+    public int calculateDiscountedMoney() {
+        int totalMoney = calculateTotalMoney();
+        int totalDiscount = calculateTotalDiscount();
+        return totalMoney - totalDiscount;
+    }
+
+    public int calculateTotalMoney() {
+        return customer.calculateMenuItemsMoney();
+    }
+
+    public int calculateTotalDiscount() {
+        return 2;
     }
 }

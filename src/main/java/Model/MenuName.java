@@ -9,11 +9,11 @@ public class MenuName {
 
     public MenuName(String menuName) {
         menuName = menuName.strip();
-        validateMenuName(menuName);
         this.menuName = menuName;
+        validateMenuName();
     }
 
-    public void validateMenuName(String menuName) {
+    public void validateMenuName() {
         boolean validFlag = false;
         for (MenuBoard menu : MenuBoard.values()) {
             String menuBoardMenuName = menu.getMenuName();
@@ -25,6 +25,10 @@ public class MenuName {
         if (!validFlag) {
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
+    }
+
+    public String get() {
+        return menuName;
     }
 
     @Override

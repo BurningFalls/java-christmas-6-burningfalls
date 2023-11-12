@@ -28,6 +28,10 @@ public class MenuCount {
         }
     }
 
+    public int get() {
+        return menuCount;
+    }
+
     @Override
     public String toString() {
         return String.valueOf(menuCount);

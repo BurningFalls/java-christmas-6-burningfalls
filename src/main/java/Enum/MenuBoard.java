@@ -24,7 +24,20 @@ public enum MenuBoard {
         this.menuType = menuType;
     }
 
+    public static int findCost(String menuName) {
+        for (MenuBoard menu : MenuBoard.values()) {
+            if (menu.menuName.equals(menuName)) {
+                return menu.menuCost;
+            }
+        }
+        return -1;
+    }
+
     public String getMenuName() {
         return menuName;
+    }
+
+    public int getMenuCost() {
+        return menuCost;
     }
 }

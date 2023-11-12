@@ -1,5 +1,7 @@
 package Model;
 
+import Enum.MenuBoard;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -19,6 +21,14 @@ public class Menu {
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
         return List.of(menuString.split("-"));
+    }
+
+    public int getCost() {
+        return MenuBoard.findCost(menuName.get());
+    }
+
+    public int getCount() {
+        return menuCount.get();
     }
 
     @Override
