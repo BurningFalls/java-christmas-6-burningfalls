@@ -14,6 +14,10 @@ public class Menu {
     }
 
     public List<String> menuStringToNameAndCount(String menuString) {
+        List<String> menuNameAndCount = List.of(menuString.split("-"));
+        if (menuNameAndCount.size() != 2) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        }
         return List.of(menuString.split("-"));
     }
 
