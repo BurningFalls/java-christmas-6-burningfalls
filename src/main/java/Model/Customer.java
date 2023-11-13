@@ -32,6 +32,16 @@ public class Customer {
         return cnt;
     }
 
+    public int countMain() {
+        int cnt = 0;
+        for (Menu menu : menuItems) {
+            if (MenuBoard.findType(menu) == MenuType.MAIN) {
+                cnt += menu.getCount();
+            }
+        }
+        return cnt;
+    }
+
     public VisitDay getVisitDay() {
         return visitDay;
     }

@@ -4,6 +4,7 @@ import Model.Customer;
 import Model.Event;
 import Model.Events.ChristmasDayEvent;
 import Model.Events.WeekdayEvent;
+import Model.Events.WeekendEvent;
 import Model.Menu;
 import Model.VisitDay;
 import org.junit.jupiter.api.BeforeEach;
@@ -78,6 +79,16 @@ public class EventTest {
     void calculateWeekdayDiscount() {
         WeekdayEvent weekdayEvent = new WeekdayEvent(weekdayCustomer);
         int actualDiscount = weekdayEvent.calculateDiscount();
+        int expectedDiscount = DISCOUNT * 2;
+
+        assertThat(actualDiscount).isEqualTo(expectedDiscount);
+    }
+
+    @DisplayName("주말 이벤트 할인 계산")
+    @Test
+    void calculateWeekendDiscount() {
+        WeekendEvent weekendEvent = new WeekendEvent(weekendCustomer);
+        int actualDiscount = weekendEvent.calculateDiscount();
         int expectedDiscount = DISCOUNT * 2;
 
         assertThat(actualDiscount).isEqualTo(expectedDiscount);

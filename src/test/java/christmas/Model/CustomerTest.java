@@ -44,4 +44,13 @@ public class CustomerTest {
 
         assertThat(actualDessertCount).isEqualTo(expectedDessertCount);
     }
+
+    @DisplayName("주문 메뉴 중 메인 개수 세기")
+    @Test
+    void countMainMenu() {
+        int actualMainCount = customer.countMain();
+        int expectedMainCount = 2;
+
+        assertThat(actualMainCount).isEqualTo(expectedMainCount);
+    }
 }
