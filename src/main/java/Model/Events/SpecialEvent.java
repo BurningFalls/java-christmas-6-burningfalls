@@ -27,6 +27,9 @@ public class SpecialEvent extends Event {
 
     @Override
     public String toString() {
+        if (discount.noCost()) {
+            return "";
+        }
         return "특별 할인: -" + discount.toString();
     }
 }

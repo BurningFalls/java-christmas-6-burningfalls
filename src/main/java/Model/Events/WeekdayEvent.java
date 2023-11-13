@@ -27,6 +27,9 @@ public class WeekdayEvent extends Event {
 
     @Override
     public String toString() {
+        if (discount.noCost()) {
+            return "";
+        }
         return "평일 할인: -" + discount.toString();
     }
 }

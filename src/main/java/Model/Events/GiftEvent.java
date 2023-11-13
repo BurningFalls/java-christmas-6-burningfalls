@@ -36,6 +36,9 @@ public class GiftEvent extends Event {
 
     @Override
     public String toString() {
+        if (discount.noCost()) {
+            return "";
+        }
         return "증정 이벤트: -" + discount.toString();
     }
 }

@@ -33,19 +33,29 @@ public class EventHistory {
         return giftEvent;
     }
 
+    public boolean validateEventString(String eventString) {
+        return !eventString.isEmpty();
+    }
+
+    public void addEventString(StringBuilder result, Event event) {
+        String eventString = event.toString();
+        if (validateEventString(eventString)) {
+            result.append(eventString).append("\n");
+        }
+    }
+
     @Override
     public String toString() {
         if (giftDiscount + eventsDiscount == 0) {
             return "없음";
         }
+
         StringBuilder result = new StringBuilder();
         for (Event event : events) {
-            String eventString = event.toString();
-            if (!eventString.isEmpty()) {
-                result.append(event.toString()).append("\n");
-            }
+            addEventString(result, event);
         }
-        result.append(giftEvent.toString());
+        addEventString(result, giftEvent);
+
         return result.toString();
     }
 }

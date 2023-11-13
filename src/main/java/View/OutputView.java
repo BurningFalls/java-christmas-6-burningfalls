@@ -43,7 +43,7 @@ public class OutputView {
     }
 
     public static void printTotalBenefit(Cost totalBenefit) {
-        System.out.println("\n<총혜택 금액>");
+        System.out.println("<총혜택 금액>");
         System.out.println(totalBenefit);
     }
 

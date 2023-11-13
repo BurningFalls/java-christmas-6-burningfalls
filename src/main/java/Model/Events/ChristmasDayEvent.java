@@ -26,7 +26,7 @@ public class ChristmasDayEvent extends Event {
     @Override
     public String toString() {
         if (discount.noCost()) {
-            return null;
+            return "";
         }
         return "크리스마스 디데이 할인: -" + discount.toString();
     }
