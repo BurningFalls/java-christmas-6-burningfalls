@@ -3,7 +3,8 @@ package Model;
 import java.util.List;
 
 public class EventHistory {
-    List<Event> events;
+    private List<Event> events;
+    private List<Integer> discounts;
 
     public EventHistory(List<Event> events) {
         this.events = events;
@@ -12,7 +13,9 @@ public class EventHistory {
     public int calculateEventsDiscount() {
         int totalDiscount = 0;
         for (Event event : events) {
-            totalDiscount += event.calculateDiscount();
+            int discount = event.calculateDiscount();
+            discounts.add(discount);
+            totalDiscount += discount;
         }
         return totalDiscount;
     }
