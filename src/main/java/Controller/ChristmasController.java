@@ -12,9 +12,9 @@ import java.util.List;
 public class ChristmasController {
     private Customer customer;
     private EventHistory eventHistory;
-    private int totalCost;
-    private int giftDiscount;
-    private int eventsDiscount;
+    private int totalCost = 0;
+    private int giftDiscount = 0;
+    private int eventsDiscount = 0;
 
     public void startPromotion() {
         readCustomersPlan();
@@ -32,6 +32,9 @@ public class ChristmasController {
     public void calculateBenefit() {
         eventSetting();
         totalCost = customer.calculateMenuItemsCost();
+        if (totalCost < 10000) {
+            return;
+        }
         giftDiscount = eventHistory.calculateGiftDiscount();
         eventsDiscount = eventHistory.calculateEventsDiscount();
     }
