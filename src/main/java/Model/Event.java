@@ -7,7 +7,7 @@ public class Event {
         return 2 <= ((day - 1) % 7);
     }
 
-    public int calculateDiscount() {
-        return 0;
+    public Cost calculateDiscount() {
+        return new Cost(0);
     }
 }

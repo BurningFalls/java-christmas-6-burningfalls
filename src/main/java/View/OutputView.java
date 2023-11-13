@@ -1,5 +1,7 @@
 package View;
 
+import Model.Cost;
+import Model.EventHistory;
 import Model.Menu;
 import Model.VisitDay;
 
@@ -22,8 +24,23 @@ public class OutputView {
     }
 
     public static void printMenuItems(List<Menu> menuItems) {
+        System.out.println("\n<주문 메뉴>");
         for (Menu menuItem : menuItems) {
             System.out.println(menuItem);
         }
+    }
+
+    public static void printTotalCost(Cost totalCost) {
+        System.out.println("\n<할인 전 총주문 금액>");
+        System.out.println(totalCost);
+    }
+
+    public static void printGiftHistory(EventHistory eventHistory) {
+
+    }
+
+    public static void printDiscountHistory(EventHistory eventHistory) {
+        System.out.println("\n<혜택 내역>");
+        System.out.println(eventHistory);
     }
 }

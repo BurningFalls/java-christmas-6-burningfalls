@@ -19,6 +19,8 @@ public class ChristmasController {
         printOrderedMenuItems();
 
         int money = calculateDiscountedMoney();
+        showGiftHistory();
+        showDiscountHistory();
     }
 
     public void readCustomerInfo() {
@@ -82,13 +84,13 @@ public class ChristmasController {
     }
 
     public void printOrderedMenuItems() {
-        System.out.println("\n<주문 메뉴>");
         OutputView.printMenuItems(customer.getMenuItems());
     }
 
     public int calculateDiscountedMoney() {
         int totalMoney = calculateTotalMoney();
         int totalDiscount = calculateTotalDiscount();
+        OutputView.printTotalCost(new Cost(totalMoney));
         return totalMoney - totalDiscount;
     }
 
@@ -109,5 +111,13 @@ public class ChristmasController {
                 new SpecialEvent(customer.getVisitDay()),
                 new GiftEvent(customer.calculateMenuItemsCost())
         ));
+    }
+
+    public void showGiftHistory() {
+        OutputView.printGiftHistory(eventHistory);
+    }
+
+    public void showDiscountHistory() {
+        OutputView.printDiscountHistory(eventHistory);
     }
 }

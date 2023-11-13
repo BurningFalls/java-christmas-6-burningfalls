@@ -59,7 +59,7 @@
 - [X] 특별 할인 금액 계산 specialEvent.*calculateDiscount*
 - [X] 증정 이벤트 금액 계산 giftEvent.*calculateDiscount*
 - [] 이벤트 배지 부여 EventBadge.*giveBadge*
-- [] 이벤트 내역 출력 OutputView.*printEventHistory*
+- [X] 혜택 내역 출력 OutputView.*printDiscountHistory*
 
 
 
