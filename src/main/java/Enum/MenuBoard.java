@@ -48,8 +48,4 @@ public enum MenuBoard {
     public String getMenuName() {
         return menuName;
     }
-
-    public int getMenuCost() {
-        return menuCost;
-    }
 }
