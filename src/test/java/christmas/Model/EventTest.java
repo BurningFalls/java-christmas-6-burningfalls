@@ -3,6 +3,7 @@ package christmas.Model;
 import Model.Customer;
 import Model.Event;
 import Model.Events.ChristmasDayEvent;
+import Model.Events.SpecialEvent;
 import Model.Events.WeekdayEvent;
 import Model.Events.WeekendEvent;
 import Model.Menu;
@@ -25,13 +26,13 @@ public class EventTest {
 
     private static Customer weekdayCustomer;
     private static Customer weekendCustomer;
-    private static Customer starCustomer;
+    private static Customer specialCustomer;
 
     @BeforeEach
     void setUp() {
         weekdayCustomer = createCustomer("5");
         weekendCustomer = createCustomer("9");
-        starCustomer = createCustomer("24");
+        specialCustomer = createCustomer("24");
     }
 
     private Customer createCustomer(String day) {
@@ -90,6 +91,19 @@ public class EventTest {
         WeekendEvent weekendEvent = new WeekendEvent(weekendCustomer);
         int actualDiscount = weekendEvent.calculateDiscount();
         int expectedDiscount = DISCOUNT * 2;
+
+        assertThat(actualDiscount).isEqualTo(expectedDiscount);
+    }
+
+    @DisplayName("특별 이벤트 할인 계산")
+    @CsvSource({
+            "3, 1000", "12, 0",
+            "25, 1000", "31, 1000"
+    })
+    @ParameterizedTest
+    void calculateSpecialDiscount(String day, int expectedDiscount) {
+        SpecialEvent specialEvent = new SpecialEvent(new VisitDay(day));
+        int actualDiscount = specialEvent.calculateDiscount();
 
         assertThat(actualDiscount).isEqualTo(expectedDiscount);
     }

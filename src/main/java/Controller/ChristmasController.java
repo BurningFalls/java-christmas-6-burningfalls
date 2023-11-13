@@ -2,6 +2,7 @@ package Controller;
 
 import Model.*;
 import Model.Events.ChristmasDayEvent;
+import Model.Events.SpecialEvent;
 import Model.Events.WeekdayEvent;
 import Model.Events.WeekendEvent;
 import View.InputView;
@@ -107,7 +108,8 @@ public class ChristmasController {
         eventHistory = new EventHistory(List.of(
                 new ChristmasDayEvent(customer.getVisitDay()),
                 new WeekdayEvent(customer),
-                new WeekendEvent(customer)
+                new WeekendEvent(customer),
+                new SpecialEvent(customer.getVisitDay())
         ));
     }
 }
