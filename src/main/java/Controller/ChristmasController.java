@@ -1,10 +1,7 @@
 package Controller;
 
 import Model.*;
-import Model.Events.ChristmasDayEvent;
-import Model.Events.SpecialEvent;
-import Model.Events.WeekdayEvent;
-import Model.Events.WeekendEvent;
+import Model.Events.*;
 import View.InputView;
 import View.OutputView;
 
@@ -109,7 +106,8 @@ public class ChristmasController {
                 new ChristmasDayEvent(customer.getVisitDay()),
                 new WeekdayEvent(customer),
                 new WeekendEvent(customer),
-                new SpecialEvent(customer.getVisitDay())
+                new SpecialEvent(customer.getVisitDay()),
+                new GiftEvent(customer.calculateMenuItemsCost())
         ));
     }
 }

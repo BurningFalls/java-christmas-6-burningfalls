@@ -2,10 +2,7 @@ package christmas.Model;
 
 import Model.Customer;
 import Model.Event;
-import Model.Events.ChristmasDayEvent;
-import Model.Events.SpecialEvent;
-import Model.Events.WeekdayEvent;
-import Model.Events.WeekendEvent;
+import Model.Events.*;
 import Model.Menu;
 import Model.VisitDay;
 import org.junit.jupiter.api.BeforeEach;
@@ -104,6 +101,19 @@ public class EventTest {
     void calculateSpecialDiscount(String day, int expectedDiscount) {
         SpecialEvent specialEvent = new SpecialEvent(new VisitDay(day));
         int actualDiscount = specialEvent.calculateDiscount();
+
+        assertThat(actualDiscount).isEqualTo(expectedDiscount);
+    }
+
+    @DisplayName("증정 이벤트 할인 계산")
+    @CsvSource({
+            "119000, 0",
+            "120000, 25000"
+    })
+    @ParameterizedTest
+    void calculateGiftDiscount(int totalCost, int expectedDiscount) {
+        GiftEvent giftEvent = new GiftEvent(totalCost);
+        int actualDiscount = giftEvent.calculateDiscount();
 
         assertThat(actualDiscount).isEqualTo(expectedDiscount);
     }
