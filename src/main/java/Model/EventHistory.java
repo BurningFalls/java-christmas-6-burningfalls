@@ -47,7 +47,7 @@ public class EventHistory {
     @Override
     public String toString() {
         if (giftDiscount + eventsDiscount == 0) {
-            return "없음";
+            return "없음\n";
         }
 
         StringBuilder result = new StringBuilder();
