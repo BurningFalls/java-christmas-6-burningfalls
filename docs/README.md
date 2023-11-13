@@ -52,7 +52,8 @@
 - [X] 식당 이벤트 공지 출력 OutputView.*printEventNotice*
 - [X] 주문한 메뉴와 개수 출력 OutputView.*printMenu*
 - [X] 총주문 금액 계산 christmasController.*calculateTotalMoney*
-- [] 모든 할인 금액 계산 christmasController.*calculateTotalDiscount*
+- [X] 증정 메뉴 금액 계산 christmasController.*calculateGiftDiscount*
+- [X] 할인 금액 계산 christmasController.*calculateEventsDiscount*
 - [X] 크리스마스 디데이 할인 금액 계산 christmasDayEvent.*calculateDiscount*
 - [X] 평일 할인 금액 계산 weekdayEvent.*calculateDiscount*
 - [X] 주말 할인 금액 계산 weekendEvent.*calculateDiscount*

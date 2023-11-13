@@ -18,9 +18,16 @@ public class ChristmasController {
         printDayEventNotice();
         printOrderedMenuItems();
 
-        int money = calculateDiscountedMoney();
+        int totalMoney = calculateTotalMoney();
+        eventSetting();
+        int giftDiscount = calculateGiftDiscount();
+        int eventsDiscount = calculateEventsDiscount();
+        OutputView.printTotalCost(new Cost(totalMoney));
+
         showGiftHistory();
         showDiscountHistory();
+        showTotalBenefit(-(giftDiscount + eventsDiscount));
+        showTotalBuyCost(totalMoney - eventsDiscount);
     }
 
     public void readCustomerInfo() {
@@ -87,19 +94,15 @@ public class ChristmasController {
         OutputView.printMenuItems(customer.getMenuItems());
     }
 
-    public int calculateDiscountedMoney() {
-        int totalMoney = calculateTotalMoney();
-        int totalDiscount = calculateTotalDiscount();
-        OutputView.printTotalCost(new Cost(totalMoney));
-        return totalMoney - totalDiscount;
-    }
-
     public int calculateTotalMoney() {
         return customer.calculateMenuItemsCost();
     }
 
-    public int calculateTotalDiscount() {
-        eventSetting();
+    public int calculateGiftDiscount() {
+        return eventHistory.calculateGiftDiscount();
+    }
+
+    public int calculateEventsDiscount() {
         return eventHistory.calculateEventsDiscount();
     }
 
@@ -108,9 +111,10 @@ public class ChristmasController {
                 new ChristmasDayEvent(customer.getVisitDay()),
                 new WeekdayEvent(customer),
                 new WeekendEvent(customer),
-                new SpecialEvent(customer.getVisitDay()),
+                new SpecialEvent(customer.getVisitDay())
+        ),
                 new GiftEvent(customer.calculateMenuItemsCost())
-        ));
+        );
     }
 
     public void showGiftHistory() {
@@ -119,5 +123,13 @@ public class ChristmasController {
 
     public void showDiscountHistory() {
         OutputView.printDiscountHistory(eventHistory);
+    }
+
+    public void showTotalBenefit(int totalBenefit) {
+        OutputView.printTotalBenefit(new Cost(totalBenefit));
+    }
+
+    public void showTotalBuyCost(int buyCost) {
+        OutputView.printTotalBuyCost(new Cost(buyCost));
     }
 }

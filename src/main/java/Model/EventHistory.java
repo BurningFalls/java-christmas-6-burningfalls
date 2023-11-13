@@ -6,32 +6,36 @@ import java.util.List;
 
 public class EventHistory {
     private List<Event> events;
-    private int totalDiscount = 0;
+    private GiftEvent giftEvent;
+    private int giftDiscount = 0;
+    private int eventsDiscount = 0;
 
-    public EventHistory(List<Event> events) {
+    public EventHistory(List<Event> events, GiftEvent giftEvent) {
         this.events = events;
+        this.giftEvent = giftEvent;
+    }
+
+    public int calculateGiftDiscount() {
+        Cost cost = giftEvent.calculateDiscount();
+        giftDiscount = cost.get();
+        return giftDiscount;
     }
 
     public int calculateEventsDiscount() {
         for (Event event : events) {
             Cost cost = event.calculateDiscount();
-            totalDiscount += cost.get();
+            eventsDiscount += cost.get();
         }
-        return totalDiscount;
+        return eventsDiscount;
     }
 
     public GiftEvent getGiftEvent() {
-        for (Event event : events) {
-            if (event instanceof GiftEvent) {
-                return (GiftEvent) event;
-            }
-        }
-        return null;
+        return giftEvent;
     }
 
     @Override
     public String toString() {
-        if (totalDiscount == 0) {
+        if (giftDiscount + eventsDiscount == 0) {
             return "없음";
         }
         StringBuilder result = new StringBuilder();
@@ -41,6 +45,7 @@ public class EventHistory {
                 result.append(event.toString()).append("\n");
             }
         }
+        result.append(giftEvent.toString());
         return result.toString();
     }
 }

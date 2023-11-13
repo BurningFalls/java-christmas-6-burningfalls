@@ -46,4 +46,14 @@ public class OutputView {
         System.out.println("\n<혜택 내역>");
         System.out.println(eventHistory);
     }
+
+    public static void printTotalBenefit(Cost totalBenefit) {
+        System.out.println("\n<총혜택 금액>");
+        System.out.println(totalBenefit);
+    }
+
+    public static void printTotalBuyCost(Cost buyCost) {
+        System.out.println("\n<할인 후 예상 결제 금액>");
+        System.out.println(buyCost);
+    }
 }
