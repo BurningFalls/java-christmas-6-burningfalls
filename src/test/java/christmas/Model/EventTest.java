@@ -1,10 +1,7 @@
 package christmas.Model;
 
-import Model.Customer;
-import Model.Event;
+import Model.*;
 import Model.Events.*;
-import Model.Menu;
-import Model.VisitDay;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,13 +20,11 @@ public class EventTest {
 
     private static Customer weekdayCustomer;
     private static Customer weekendCustomer;
-    private static Customer specialCustomer;
 
     @BeforeEach
     void setUp() {
         weekdayCustomer = createCustomer("5");
         weekendCustomer = createCustomer("9");
-        specialCustomer = createCustomer("24");
     }
 
     private Customer createCustomer(String day) {
@@ -65,9 +60,10 @@ public class EventTest {
             "26, 0"
     })
     @ParameterizedTest
-    void calculateChristmasDayDiscount(String day, int expectedDiscount) {
+    void calculateChristmasDayDiscount(String day, int discount) {
         ChristmasDayEvent event = new ChristmasDayEvent(new VisitDay(day));
-        int actualDiscount = event.calculateDiscount();
+        Cost actualDiscount = event.calculateDiscount();
+        Cost expectedDiscount = new Cost(discount);
 
         assertThat(actualDiscount).isEqualTo(expectedDiscount);
     }
@@ -76,8 +72,8 @@ public class EventTest {
     @Test
     void calculateWeekdayDiscount() {
         WeekdayEvent weekdayEvent = new WeekdayEvent(weekdayCustomer);
-        int actualDiscount = weekdayEvent.calculateDiscount();
-        int expectedDiscount = DISCOUNT * 2;
+        Cost actualDiscount = weekdayEvent.calculateDiscount();
+        Cost expectedDiscount = new Cost(DISCOUNT * 2);
 
         assertThat(actualDiscount).isEqualTo(expectedDiscount);
     }
@@ -86,8 +82,8 @@ public class EventTest {
     @Test
     void calculateWeekendDiscount() {
         WeekendEvent weekendEvent = new WeekendEvent(weekendCustomer);
-        int actualDiscount = weekendEvent.calculateDiscount();
-        int expectedDiscount = DISCOUNT * 2;
+        Cost actualDiscount = weekendEvent.calculateDiscount();
+        Cost expectedDiscount = new Cost(DISCOUNT * 2);
 
         assertThat(actualDiscount).isEqualTo(expectedDiscount);
     }
@@ -98,9 +94,10 @@ public class EventTest {
             "25, 1000", "31, 1000"
     })
     @ParameterizedTest
-    void calculateSpecialDiscount(String day, int expectedDiscount) {
+    void calculateSpecialDiscount(String day, int discount) {
         SpecialEvent specialEvent = new SpecialEvent(new VisitDay(day));
-        int actualDiscount = specialEvent.calculateDiscount();
+        Cost actualDiscount = specialEvent.calculateDiscount();
+        Cost expectedDiscount = new Cost(discount);
 
         assertThat(actualDiscount).isEqualTo(expectedDiscount);
     }
@@ -111,9 +108,10 @@ public class EventTest {
             "120000, 25000"
     })
     @ParameterizedTest
-    void calculateGiftDiscount(int totalCost, int expectedDiscount) {
+    void calculateGiftDiscount(int totalCost, int discount) {
         GiftEvent giftEvent = new GiftEvent(totalCost);
-        int actualDiscount = giftEvent.calculateDiscount();
+        Cost actualDiscount = giftEvent.calculateDiscount();
+        Cost expectedDiscount = new Cost(discount);
 
         assertThat(actualDiscount).isEqualTo(expectedDiscount);
     }

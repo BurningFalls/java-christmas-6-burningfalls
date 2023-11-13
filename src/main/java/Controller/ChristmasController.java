@@ -1,5 +1,6 @@
 package Controller;
 
+import Enum.BadgeBoard;
 import Model.*;
 import Model.Events.*;
 import View.InputView;
@@ -22,12 +23,14 @@ public class ChristmasController {
         eventSetting();
         int giftDiscount = calculateGiftDiscount();
         int eventsDiscount = calculateEventsDiscount();
+        int totalBenefit = giftDiscount + eventsDiscount;
         OutputView.printTotalCost(new Cost(totalMoney));
 
         showGiftHistory();
         showDiscountHistory();
-        showTotalBenefit(-(giftDiscount + eventsDiscount));
+        showTotalBenefit(-totalBenefit);
         showTotalBuyCost(totalMoney - eventsDiscount);
+        showEventBadge(totalBenefit);
     }
 
     public void readCustomerInfo() {
@@ -131,5 +134,10 @@ public class ChristmasController {
 
     public void showTotalBuyCost(int buyCost) {
         OutputView.printTotalBuyCost(new Cost(buyCost));
+    }
+
+    public void showEventBadge(int totalBenefit) {
+        String badgeName = BadgeBoard.getBadgeName(totalBenefit);
+        OutputView.printEventBadge(new Badge(badgeName));
     }
 }

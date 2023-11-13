@@ -1,10 +1,7 @@
 package View;
 
-import Model.Cost;
-import Model.EventHistory;
+import Model.*;
 import Model.Events.GiftEvent;
-import Model.Menu;
-import Model.VisitDay;
 
 import java.util.List;
 
@@ -19,9 +16,7 @@ public class OutputView {
     }
 
     public static void printEventNotice(VisitDay visitDay) {
-        System.out.print("12월 ");
-        System.out.print(visitDay);
-        System.out.println("에 우테코 식당에서 받을 이벤트 혜택 미리 보기!");
+        System.out.println("12월 " + visitDay.toString() + "에 우테코 식당에서 받을 이벤트 혜택 미리 보기!");
     }
 
     public static void printMenuItems(List<Menu> menuItems) {
@@ -55,5 +50,10 @@ public class OutputView {
     public static void printTotalBuyCost(Cost buyCost) {
         System.out.println("\n<할인 후 예상 결제 금액>");
         System.out.println(buyCost);
+    }
+
+    public static void printEventBadge(Badge badge) {
+        System.out.println("\n12월 이벤트 배지");
+        System.out.println(badge);
     }
 }
