@@ -30,6 +30,10 @@ public class VisitDay {
         }
     }
 
+    public int get() {
+        return visitDay;
+    }
+
     @Override
     public String toString() {
         return visitDay + "일";

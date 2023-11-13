@@ -1,8 +1,7 @@
 package Controller;
 
-import Model.Customer;
-import Model.Menu;
-import Model.VisitDay;
+import Model.*;
+import Model.Events.ChristmasDayEvent;
 import View.InputView;
 import View.OutputView;
 
@@ -11,6 +10,7 @@ import java.util.List;
 
 public class ChristmasController {
     Customer customer;
+    EventHistory eventHistory;
 
     public void startPromotion() {
         OutputView.printGreeting();
@@ -97,6 +97,13 @@ public class ChristmasController {
     }
 
     public int calculateTotalDiscount() {
-        return 2;
+        eventSetting();
+        return eventHistory.calculateEventsDiscount();
+    }
+
+    public void eventSetting() {
+        eventHistory = new EventHistory(List.of(
+                new ChristmasDayEvent(customer.getVisitDay())
+        ));
     }
 }
