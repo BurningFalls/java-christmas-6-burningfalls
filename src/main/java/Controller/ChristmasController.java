@@ -1,6 +1,8 @@
 package Controller;
 
 import Enum.BadgeBoard;
+import Enum.MenuBoard;
+import Enum.MenuType;
 import Model.*;
 import Model.Events.*;
 import View.InputView;
@@ -96,7 +98,23 @@ public class ChristmasController {
             validateIsSameMenuExists(menuItems, menuItem);
             menuItems.add(menuItem);
         }
+
+        validateOnlyDrinks(menuItems);
+
         return menuItems;
+    }
+
+    public void validateOnlyDrinks(List<Menu> menuItems) {
+        int drinkCount = 0;
+        for (Menu menu : menuItems) {
+            MenuType menuType = MenuBoard.findType(menu);
+            if (menuType == MenuType.DRINK) {
+                drinkCount += 1;
+            }
+        }
+        if (drinkCount == menuItems.size()) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        }
     }
 
     public void validateIsSameMenuExists(List<Menu> menuItems, Menu menuItem) {

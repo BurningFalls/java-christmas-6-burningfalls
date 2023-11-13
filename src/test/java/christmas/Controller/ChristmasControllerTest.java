@@ -45,4 +45,12 @@ public class ChristmasControllerTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
+
+    @DisplayName("음료수만 주문 시 예외 처리")
+    @Test
+    void orderOnlyDrinks() {
+        assertThatThrownBy(() -> controller.validateOnlyDrinks(
+                List.of(new Menu("제로콜라-1"), new Menu("레드와인-2"))))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

@@ -62,6 +62,7 @@
 - [X] 이벤트 배지 출력 OutputView.*printEventBadge*
 - [X] 혜택 내역 출력 OutputView.*printDiscountHistory*
 - [X] 증정 메뉴 출력 OutputView.*printGiftHistory*
+- [X] 음료수만 주문 시 예외 처리 christmasController.*validateOnlyDrinks*
 
 
 
