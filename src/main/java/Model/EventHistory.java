@@ -1,5 +1,7 @@
 package Model;
 
+import Model.Events.GiftEvent;
+
 import java.util.List;
 
 public class EventHistory {
@@ -16,6 +18,15 @@ public class EventHistory {
             totalDiscount += cost.get();
         }
         return totalDiscount;
+    }
+
+    public GiftEvent getGiftEvent() {
+        for (Event event : events) {
+            if (event instanceof GiftEvent) {
+                return (GiftEvent) event;
+            }
+        }
+        return null;
     }
 
     @Override

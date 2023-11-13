@@ -114,7 +114,7 @@ public class ChristmasController {
     }
 
     public void showGiftHistory() {
-        OutputView.printGiftHistory(eventHistory);
+        OutputView.printGiftHistory(eventHistory.getGiftEvent());
     }
 
     public void showDiscountHistory() {

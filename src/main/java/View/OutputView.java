@@ -2,6 +2,7 @@ package View;
 
 import Model.Cost;
 import Model.EventHistory;
+import Model.Events.GiftEvent;
 import Model.Menu;
 import Model.VisitDay;
 
@@ -35,7 +36,9 @@ public class OutputView {
         System.out.println(totalCost);
     }
 
-    public static void printGiftHistory(EventHistory eventHistory) {
+    public static void printGiftHistory(GiftEvent giftEvent) {
+        System.out.println("\n<증정 메뉴>");
+        System.out.println(giftEvent.toStringMenu());
 
     }
 

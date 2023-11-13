@@ -19,6 +19,13 @@ public class GiftEvent extends Event {
         return !discount.noCost();
     }
 
+    public String toStringMenu() {
+        if (!isGifted()) {
+            return "없음";
+        }
+        return "샴페인 1개";
+    }
+
     @Override
     public Cost calculateDiscount() {
         if (totalCost >= MINIMUM_COST) {
