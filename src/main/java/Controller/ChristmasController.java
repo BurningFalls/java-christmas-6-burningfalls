@@ -10,30 +10,43 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChristmasController {
-    Customer customer;
-    EventHistory eventHistory;
+    private Customer customer;
+    private EventHistory eventHistory;
+    private int totalCost;
+    private int giftDiscount;
+    private int eventsDiscount;
 
     public void startPromotion() {
+        readCustomersPlan();
+        calculateBenefit();
+        showEventPlanner();
+    }
+
+    public void readCustomersPlan() {
         OutputView.printGreeting();
-        readCustomerInfo();
-        printDayEventNotice();
-        printOrderedMenuItems();
+        setCustomerInfo();
+        OutputView.printEventNotice(customer.getVisitDay());
+        OutputView.printMenuItems(customer.getMenuItems());
+    }
 
-        int totalMoney = calculateTotalMoney();
+    public void calculateBenefit() {
         eventSetting();
-        int giftDiscount = calculateGiftDiscount();
-        int eventsDiscount = calculateEventsDiscount();
-        int totalBenefit = giftDiscount + eventsDiscount;
-        OutputView.printTotalCost(new Cost(totalMoney));
+        totalCost = customer.calculateMenuItemsCost();
+        giftDiscount = eventHistory.calculateGiftDiscount();
+        eventsDiscount = eventHistory.calculateEventsDiscount();
+    }
 
-        showGiftHistory();
-        showDiscountHistory();
-        showTotalBenefit(-totalBenefit);
-        showTotalBuyCost(totalMoney - eventsDiscount);
+    public void showEventPlanner() {
+        int totalBenefit = giftDiscount + eventsDiscount;
+        OutputView.printTotalCost(new Cost(totalCost));
+        OutputView.printGiftHistory(eventHistory.getGiftEvent());
+        OutputView.printDiscountHistory(eventHistory);
+        OutputView.printTotalBenefit(new Cost(-totalBenefit));
+        OutputView.printTotalBuyCost(new Cost(totalCost - eventsDiscount));
         showEventBadge(totalBenefit);
     }
 
-    public void readCustomerInfo() {
+    public void setCustomerInfo() {
         VisitDay customerVisitDay = readVisitDayInput();
         List<Menu> customerMenuItems = readMenuItemsInput();
         customer = new Customer(customerVisitDay, customerMenuItems);
@@ -89,26 +102,6 @@ public class ChristmasController {
         }
     }
 
-    public void printDayEventNotice() {
-        OutputView.printEventNotice(customer.getVisitDay());
-    }
-
-    public void printOrderedMenuItems() {
-        OutputView.printMenuItems(customer.getMenuItems());
-    }
-
-    public int calculateTotalMoney() {
-        return customer.calculateMenuItemsCost();
-    }
-
-    public int calculateGiftDiscount() {
-        return eventHistory.calculateGiftDiscount();
-    }
-
-    public int calculateEventsDiscount() {
-        return eventHistory.calculateEventsDiscount();
-    }
-
     public void eventSetting() {
         eventHistory = new EventHistory(List.of(
                 new ChristmasDayEvent(customer.getVisitDay()),
@@ -118,22 +111,6 @@ public class ChristmasController {
         ),
                 new GiftEvent(customer.calculateMenuItemsCost())
         );
-    }
-
-    public void showGiftHistory() {
-        OutputView.printGiftHistory(eventHistory.getGiftEvent());
-    }
-
-    public void showDiscountHistory() {
-        OutputView.printDiscountHistory(eventHistory);
-    }
-
-    public void showTotalBenefit(int totalBenefit) {
-        OutputView.printTotalBenefit(new Cost(totalBenefit));
-    }
-
-    public void showTotalBuyCost(int buyCost) {
-        OutputView.printTotalBuyCost(new Cost(buyCost));
     }
 
     public void showEventBadge(int totalBenefit) {
