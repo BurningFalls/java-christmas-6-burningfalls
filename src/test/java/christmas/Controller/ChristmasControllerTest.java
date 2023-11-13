@@ -53,4 +53,12 @@ public class ChristmasControllerTest {
                 List.of(new Menu("제로콜라-1"), new Menu("레드와인-2"))))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("메뉴 20개 초과 주문 시 예외 처리")
+    @Test
+    void orderUpTo20() {
+        assertThatThrownBy(() -> controller.validateBiggerThan20(
+                List.of(new Menu("양송이수프-15"), new Menu("초코케이크-6"))))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

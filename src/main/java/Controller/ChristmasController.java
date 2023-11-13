@@ -100,6 +100,7 @@ public class ChristmasController {
         }
 
         validateOnlyDrinks(menuItems);
+        validateBiggerThan20(menuItems);
 
         return menuItems;
     }
@@ -113,6 +114,16 @@ public class ChristmasController {
             }
         }
         if (drinkCount == menuItems.size()) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        }
+    }
+
+    public void validateBiggerThan20(List<Menu> menuItems) {
+        int menuCount = 0;
+        for (Menu menu : menuItems) {
+            menuCount += menu.getCount();
+        }
+        if (menuCount > 20) {
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
     }
