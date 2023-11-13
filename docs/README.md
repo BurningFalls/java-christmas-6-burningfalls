@@ -54,7 +54,7 @@
 - [X] 총주문 금액 계산 christmasController.*calculateTotalMoney*
 - [] 모든 할인 금액 계산 christmasController.*calculateTotalDiscount*
 - [X] 크리스마스 디데이 할인 금액 계산 christmasDayEvent.*calculateDiscount*
-- [] 평일 할인 금액 계산 weekdayEvent.*calculateDiscount*
+- [X] 평일 할인 금액 계산 weekdayEvent.*calculateDiscount*
 - [] 주말 할인 금액 계산 weekendEvent.*calculateDiscount*
 - [] 특별 할인 금액 계산 specialEvent.*calculateDiscount*
 - [] 증정 이벤트 금액 계산 giftEvent.*calculateDiscount*

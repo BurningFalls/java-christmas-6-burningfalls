@@ -23,8 +23,12 @@ public class Menu {
         return List.of(menuString.split("-"));
     }
 
+    public String getName() {
+        return menuName.get();
+    }
+
     public int getCost() {
-        return MenuBoard.findCost(menuName.get());
+        return MenuBoard.findCost(menuName);
     }
 
     public int getCount() {

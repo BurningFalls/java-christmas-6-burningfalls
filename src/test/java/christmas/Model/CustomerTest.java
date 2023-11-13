@@ -30,9 +30,18 @@ public class CustomerTest {
     @DisplayName("총 주문 금액 계산")
     @Test
     void calculateTotalMoney() {
-        int actualTotalMoney = customer.calculateMenuItemsMoney();
+        int actualTotalMoney = customer.calculateMenuItemsCost();
         int expectedTotalMoney = 142000;
 
         assertThat(actualTotalMoney).isEqualTo(expectedTotalMoney);
+    }
+
+    @DisplayName("주문 메뉴 중 디저트 개수 세기")
+    @Test
+    void countDessertMenu() {
+        int actualDessertCount = customer.countDessert();
+        int expectedDessertCount = 2;
+
+        assertThat(actualDessertCount).isEqualTo(expectedDessertCount);
     }
 }

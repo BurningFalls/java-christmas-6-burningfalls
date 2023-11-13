@@ -1,5 +1,8 @@
 package Model;
 
+import Enum.MenuBoard;
+import Enum.MenuType;
+
 import java.util.List;
 
 public class Customer {
@@ -11,12 +14,22 @@ public class Customer {
         this.menuItems = menuItems;
     }
 
-    public int calculateMenuItemsMoney() {
+    public int calculateMenuItemsCost() {
         int totalMoney = 0;
         for (Menu menu : menuItems) {
             totalMoney += menu.getCost() * menu.getCount();
         }
         return totalMoney;
+    }
+
+    public int countDessert() {
+        int cnt = 0;
+        for (Menu menu : menuItems) {
+            if (MenuBoard.findType(menu) == MenuType.DESSERT) {
+                cnt += menu.getCount();
+            }
+        }
+        return cnt;
     }
 
     public VisitDay getVisitDay() {

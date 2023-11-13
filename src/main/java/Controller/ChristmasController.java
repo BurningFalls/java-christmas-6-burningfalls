@@ -2,6 +2,7 @@ package Controller;
 
 import Model.*;
 import Model.Events.ChristmasDayEvent;
+import Model.Events.WeekdayEvent;
 import View.InputView;
 import View.OutputView;
 
@@ -93,7 +94,7 @@ public class ChristmasController {
     }
 
     public int calculateTotalMoney() {
-        return customer.calculateMenuItemsMoney();
+        return customer.calculateMenuItemsCost();
     }
 
     public int calculateTotalDiscount() {
@@ -103,7 +104,8 @@ public class ChristmasController {
 
     public void eventSetting() {
         eventHistory = new EventHistory(List.of(
-                new ChristmasDayEvent(customer.getVisitDay())
+                new ChristmasDayEvent(customer.getVisitDay()),
+                new WeekdayEvent(customer)
         ));
     }
 }

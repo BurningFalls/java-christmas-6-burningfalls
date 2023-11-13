@@ -1,5 +1,8 @@
 package Enum;
 
+import Model.Menu;
+import Model.MenuName;
+
 public enum MenuBoard {
     MUSHROOM_SOUP("양송이수프", 6000, MenuType.EPITIZER),
     TAPAS("타파스", 5500, MenuType.EPITIZER),
@@ -24,13 +27,22 @@ public enum MenuBoard {
         this.menuType = menuType;
     }
 
-    public static int findCost(String menuName) {
+    public static int findCost(MenuName menuName) {
         for (MenuBoard menu : MenuBoard.values()) {
-            if (menu.menuName.equals(menuName)) {
+            if (menu.menuName.equals(menuName.get())) {
                 return menu.menuCost;
             }
         }
         return -1;
+    }
+
+    public static MenuType findType(Menu menu) {
+        for (MenuBoard boardedMenu : MenuBoard.values()) {
+            if (boardedMenu.menuName.equals(menu.getName())) {
+                return boardedMenu.menuType;
+            }
+        }
+        return null;
     }
 
     public String getMenuName() {
