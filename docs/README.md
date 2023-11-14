@@ -45,15 +45,15 @@
 - [X] 방문 날짜가 숫자인지 확인 VisitDay.*validateIsNumber*
 - [X] 방문 날짜가 1 이상 31 이하인지 확인 VisitDay.*validate1To31*
 - [X] 주문할 메뉴와 개수 입력받기 InputView.*inputMenu*
-- [X] 메뉴 이름이 메뉴판에 있는 메뉴인지 확인 Menu.*validateMenuName*
-- [X] 메뉴 이름을 중복해서 입력했는지 확인 Menu.*validateDuplicate*
-- [X] 메뉴 개수가 숫자인지 확인 Menu.*validateIsNumber*
-- [X] 메뉴 개수가 1 이상인지 확인 Menu.*validateBiggerThanOne*
+- [X] 메뉴 이름이 메뉴판에 있는 메뉴인지 확인 MenuName.*validateMenuName*
+- [X] 메뉴 이름을 중복해서 입력했는지 확인 MenuItems.*validateIsSameMenuExists*
+- [X] 메뉴 개수가 숫자인지 확인 MenuCount.*validateIsNumber*
+- [X] 메뉴 개수가 1 이상인지 확인 MenuCount.*validateBiggerThanOne*
 - [X] 식당 이벤트 공지 출력 OutputView.*printEventNotice*
-- [X] 주문한 메뉴와 개수 출력 OutputView.*printMenu*
-- [X] 총주문 금액 계산 christmasController.*calculateTotalMoney*
-- [X] 증정 메뉴 금액 계산 christmasController.*calculateGiftDiscount*
-- [X] 할인 금액 계산 christmasController.*calculateEventsDiscount*
+- [X] 주문한 메뉴와 개수 출력 OutputView.*printMenuItems*
+- [X] 총주문 금액 계산 MenuItems.*calculateMenuItemsCost*
+- [X] 증정 메뉴 금액 계산 EventHistory.*calculateGiftDiscount*
+- [X] 할인 금액 계산 EventHistory.*calculateEventsDiscount*
 - [X] 크리스마스 디데이 할인 금액 계산 christmasDayEvent.*calculateDiscount*
 - [X] 평일 할인 금액 계산 weekdayEvent.*calculateDiscount*
 - [X] 주말 할인 금액 계산 weekendEvent.*calculateDiscount*
@@ -62,7 +62,8 @@
 - [X] 이벤트 배지 출력 OutputView.*printEventBadge*
 - [X] 혜택 내역 출력 OutputView.*printDiscountHistory*
 - [X] 증정 메뉴 출력 OutputView.*printGiftHistory*
-- [X] 음료수만 주문 시 예외 처리 christmasController.*validateOnlyDrinks*
+- [X] 음료수만 주문 시 예외 처리 MenuItems.*validateOnlyDrinks*
+- [X] 메뉴 20개 초과 주문 시 예외 처리 MenuItems.*validateBiggerThan20*
 
 
 
