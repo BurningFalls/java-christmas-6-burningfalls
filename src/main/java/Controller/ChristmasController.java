@@ -1,8 +1,6 @@
 package Controller;
 
 import Enum.BadgeBoard;
-import Enum.MenuBoard;
-import Enum.MenuType;
 import Model.*;
 import Model.Events.*;
 import View.InputView;
@@ -12,11 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChristmasController {
-    private Customer customer;
+    private VisitDay visitDay;
+    private MenuItems menuItems;
     private EventHistory eventHistory;
-    private int totalCost = 0;
-    private int giftDiscount = 0;
-    private int eventsDiscount = 0;
 
     public void startPromotion() {
         readCustomersPlan();
@@ -27,34 +23,33 @@ public class ChristmasController {
     public void readCustomersPlan() {
         OutputView.printGreeting();
         setCustomerInfo();
-        OutputView.printEventNotice(customer.getVisitDay());
-        OutputView.printMenuItems(customer.getMenuItems());
+        OutputView.printEventNotice(visitDay);
+        OutputView.printMenuItems(menuItems);
     }
 
     public void calculateBenefit() {
+        menuItems.calculateMenuItemsCost();
         eventSetting();
-        totalCost = customer.calculateMenuItemsCost();
-        if (totalCost < 10000) {
+        if (menuItems.getTotalCost() < 10000) {
             return;
         }
-        giftDiscount = eventHistory.calculateGiftDiscount();
-        eventsDiscount = eventHistory.calculateEventsDiscount();
+
+        eventHistory.calculateGiftDiscount();
+        eventHistory.calculateEventsDiscount();
     }
 
     public void showEventPlanner() {
-        int totalBenefit = giftDiscount + eventsDiscount;
-        OutputView.printTotalCost(new Cost(totalCost));
+        OutputView.printTotalCost(menuItems.getTotalCost());
         OutputView.printGiftHistory(eventHistory.getGiftEvent());
         OutputView.printDiscountHistory(eventHistory);
-        OutputView.printTotalBenefit(new Cost(-totalBenefit));
-        OutputView.printTotalBuyCost(new Cost(totalCost - eventsDiscount));
-        showEventBadge(totalBenefit);
+        OutputView.printTotalDiscount(eventHistory.getTotalDiscount());
+        OutputView.printTotalBuyCost(menuItems.getTotalCost() - eventHistory.getEventsDiscount());
+        showEventBadge();
     }
 
     public void setCustomerInfo() {
-        VisitDay customerVisitDay = readVisitDayInput();
-        List<Menu> customerMenuItems = readMenuItemsInput();
-        customer = new Customer(customerVisitDay, customerMenuItems);
+        visitDay = readVisitDayInput();
+        menuItems = readMenuItemsInput();
     }
 
     public VisitDay readVisitDayInput() {
@@ -73,14 +68,14 @@ public class ChristmasController {
         return visitDay;
     }
 
-    public List<Menu> readMenuItemsInput() {
-        List<Menu> menuItems = new ArrayList<>();
+    public MenuItems readMenuItemsInput() {
+        MenuItems menuItems = null;
         boolean validFlag = false;
 
         while (!validFlag) {
             try {
                 String menuItemsFromInput = InputView.inputMenu();
-                menuItems = fetchMenuItems(menuItemsFromInput);
+                menuItems = new MenuItems(fetchMenuItems(menuItemsFromInput));
                 validFlag = true;
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
@@ -95,58 +90,25 @@ public class ChristmasController {
 
         for (String menuItemString : menuItemsString) {
             Menu menuItem = new Menu(menuItemString);
-            validateIsSameMenuExists(menuItems, menuItem);
             menuItems.add(menuItem);
         }
-
-        validateOnlyDrinks(menuItems);
-        validateBiggerThan20(menuItems);
 
         return menuItems;
     }
 
-    public void validateOnlyDrinks(List<Menu> menuItems) {
-        int drinkCount = 0;
-        for (Menu menu : menuItems) {
-            MenuType menuType = MenuBoard.findType(menu);
-            if (menuType == MenuType.DRINK) {
-                drinkCount += 1;
-            }
-        }
-        if (drinkCount == menuItems.size()) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
-        }
-    }
-
-    public void validateBiggerThan20(List<Menu> menuItems) {
-        int menuCount = 0;
-        for (Menu menu : menuItems) {
-            menuCount += menu.getCount();
-        }
-        if (menuCount > 20) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
-        }
-    }
-
-    public void validateIsSameMenuExists(List<Menu> menuItems, Menu menuItem) {
-        if (menuItems.contains(menuItem)) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
-        }
-    }
-
     public void eventSetting() {
         eventHistory = new EventHistory(List.of(
-                new ChristmasDayEvent(customer.getVisitDay()),
-                new WeekdayEvent(customer),
-                new WeekendEvent(customer),
-                new SpecialEvent(customer.getVisitDay())
+                new ChristmasDayEvent(visitDay),
+                new WeekdayEvent(visitDay, menuItems),
+                new WeekendEvent(visitDay, menuItems),
+                new SpecialEvent(visitDay)
         ),
-                new GiftEvent(customer.calculateMenuItemsCost())
+                new GiftEvent(menuItems.getTotalCost())
         );
     }
 
-    public void showEventBadge(int totalBenefit) {
-        String badgeName = BadgeBoard.getBadgeName(totalBenefit);
+    public void showEventBadge() {
+        String badgeName = BadgeBoard.getBadgeName(eventHistory.getTotalDiscount());
         OutputView.printEventBadge(new Badge(badgeName));
     }
 }

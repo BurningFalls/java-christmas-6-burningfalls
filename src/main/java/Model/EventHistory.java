@@ -15,22 +15,28 @@ public class EventHistory {
         this.giftEvent = giftEvent;
     }
 
-    public int calculateGiftDiscount() {
+    public void calculateGiftDiscount() {
         Cost cost = giftEvent.calculateDiscount();
         giftDiscount = cost.get();
-        return giftDiscount;
     }
 
-    public int calculateEventsDiscount() {
+    public void calculateEventsDiscount() {
         for (Event event : events) {
             Cost cost = event.calculateDiscount();
             eventsDiscount += cost.get();
         }
-        return eventsDiscount;
     }
 
     public GiftEvent getGiftEvent() {
         return giftEvent;
+    }
+
+    public int getEventsDiscount() {
+        return eventsDiscount;
+    }
+
+    public int getTotalDiscount() {
+        return giftDiscount + eventsDiscount;
     }
 
     public boolean validateEventString(String eventString) {

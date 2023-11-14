@@ -1,25 +1,25 @@
 package Model.Events;
 
-import Model.Cost;
-import Model.Customer;
-import Model.Event;
+import Model.*;
 
 public class WeekdayEvent extends Event {
     private static final int DISCOUNT = 2023;
-    private Customer customer;
+    private VisitDay visitDay;
+    private MenuItems menuItems;
     private Cost discount;
 
-    public WeekdayEvent(Customer customer) {
+    public WeekdayEvent(VisitDay visitDay, MenuItems menuItems) {
         super();
-        this.customer = customer;
+        this.visitDay = visitDay;
+        this.menuItems = menuItems;
         discount = new Cost(0);
     }
 
     @Override
     public Cost calculateDiscount() {
-        boolean weekdayFlag = isWeekday(customer.getVisitDay());
+        boolean weekdayFlag = isWeekday(visitDay);
         if (weekdayFlag) {
-            int dessertCount = customer.countDessert();
+            int dessertCount = menuItems.countDessert();
             discount = new Cost(dessertCount * DISCOUNT);
         }
         return discount;

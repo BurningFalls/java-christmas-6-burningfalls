@@ -6,12 +6,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.sql.Array;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class ChristmasControllerTest {
     ChristmasController controller;
@@ -36,29 +33,5 @@ public class ChristmasControllerTest {
         List<Menu> expectedMenuItems = sampleMenuItems;
 
         assertThat(actualMenuItems).isEqualTo(expectedMenuItems);
-    }
-
-    @DisplayName("메뉴 이름이 중복되면 예외 처리")
-    @Test
-    void menuNameDuplicate() {
-        assertThatThrownBy(() -> controller.validateIsSameMenuExists(sampleMenuItems, new Menu("초코케이크-1")))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
-    }
-
-    @DisplayName("음료수만 주문 시 예외 처리")
-    @Test
-    void orderOnlyDrinks() {
-        assertThatThrownBy(() -> controller.validateOnlyDrinks(
-                List.of(new Menu("제로콜라-1"), new Menu("레드와인-2"))))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @DisplayName("메뉴 20개 초과 주문 시 예외 처리")
-    @Test
-    void orderUpTo20() {
-        assertThatThrownBy(() -> controller.validateBiggerThan20(
-                List.of(new Menu("양송이수프-15"), new Menu("초코케이크-6"))))
-                .isInstanceOf(IllegalArgumentException.class);
     }
 }

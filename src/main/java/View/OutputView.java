@@ -3,8 +3,6 @@ package View;
 import Model.*;
 import Model.Events.GiftEvent;
 
-import java.util.List;
-
 public class OutputView {
 
     public static void printGreeting() {
@@ -19,16 +17,14 @@ public class OutputView {
         System.out.println("12월 " + visitDay.toString() + "에 우테코 식당에서 받을 이벤트 혜택 미리 보기!");
     }
 
-    public static void printMenuItems(List<Menu> menuItems) {
+    public static void printMenuItems(MenuItems menuItems) {
         System.out.println("\n<주문 메뉴>");
-        for (Menu menuItem : menuItems) {
-            System.out.println(menuItem);
-        }
+        System.out.println(menuItems);
     }
 
-    public static void printTotalCost(Cost totalCost) {
-        System.out.println("\n<할인 전 총주문 금액>");
-        System.out.println(totalCost);
+    public static void printTotalCost(int totalCost) {
+        System.out.println("<할인 전 총주문 금액>");
+        System.out.println(new Cost(totalCost));
     }
 
     public static void printGiftHistory(GiftEvent giftEvent) {
@@ -42,14 +38,14 @@ public class OutputView {
         System.out.println(eventHistory);
     }
 
-    public static void printTotalBenefit(Cost totalBenefit) {
+    public static void printTotalDiscount(int totalBenefit) {
         System.out.println("<총혜택 금액>");
-        System.out.println(totalBenefit);
+        System.out.println(new Cost(-totalBenefit));
     }
 
-    public static void printTotalBuyCost(Cost buyCost) {
+    public static void printTotalBuyCost(int buyCost) {
         System.out.println("\n<할인 후 예상 결제 금액>");
-        System.out.println(buyCost);
+        System.out.println(new Cost(buyCost));
     }
 
     public static void printEventBadge(Badge badge) {

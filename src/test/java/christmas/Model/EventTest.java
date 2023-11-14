@@ -6,35 +6,23 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class EventTest {
     private static final int DISCOUNT = 2023;
 
-    private static Customer weekdayCustomer;
-    private static Customer weekendCustomer;
+    private static MenuItems menuItems;
 
     @BeforeEach
     void setUp() {
-        weekdayCustomer = createCustomer("5");
-        weekendCustomer = createCustomer("9");
-    }
-
-    private Customer createCustomer(String day) {
-        return new Customer(
-                new VisitDay(day),
-                List.of(
-                        new Menu("티본스테이크-1"), new Menu("바비큐립-1"),
-                        new Menu("초코케이크-2"), new Menu("제로콜라-1")
-                )
-        );
+        menuItems = new MenuItems(List.of(
+                new Menu("티본스테이크-1"), new Menu("바비큐립-1"),
+                new Menu("초코케이크-2"), new Menu("제로콜라-1")
+        ));
     }
 
     @DisplayName("평일인지 확인")
@@ -71,7 +59,7 @@ public class EventTest {
     @DisplayName("평일 이벤트 할인 계산")
     @Test
     void calculateWeekdayDiscount() {
-        WeekdayEvent weekdayEvent = new WeekdayEvent(weekdayCustomer);
+        WeekdayEvent weekdayEvent = new WeekdayEvent(new VisitDay("5"), menuItems);
         Cost actualDiscount = weekdayEvent.calculateDiscount();
         Cost expectedDiscount = new Cost(DISCOUNT * 2);
 
@@ -81,7 +69,7 @@ public class EventTest {
     @DisplayName("주말 이벤트 할인 계산")
     @Test
     void calculateWeekendDiscount() {
-        WeekendEvent weekendEvent = new WeekendEvent(weekendCustomer);
+        WeekendEvent weekendEvent = new WeekendEvent(new VisitDay("9"), menuItems);
         Cost actualDiscount = weekendEvent.calculateDiscount();
         Cost expectedDiscount = new Cost(DISCOUNT * 2);
 
